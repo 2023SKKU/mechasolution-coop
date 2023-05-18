@@ -1,8 +1,12 @@
 import json
 import csv
 import urllib.request
-client_id = "6XZbrFukBcbeIchUJqHe"
-client_secret = "p4Nca6hWvN"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+client_id = os.environ.get('naver_api_id')
+client_secret = os.environ.get('naver_api_pw')
 url = "https://openapi.naver.com/v1/datalab/search"
 
 
