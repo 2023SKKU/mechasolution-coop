@@ -25,19 +25,20 @@ date = []
 data_li = []
 flag = True
 for item in item_li:
-    body = "{\"startDate\":\"2023-03-01\",\"endDate\":\"2023-05-16\",\"timeUnit\":\"date\",\"keywordGroups\":[{\"groupName\":\""+item+"\",\"keywords\":[\""+item+"\"]}]}"
+    body = "{\"startDate\":\"2023-03-01\",\"endDate\":\"2023-05-19\",\"timeUnit\":\"date\",\"keywordGroups\":[{\"groupName\":\""+item+"\",\"keywords\":[\""+item+"\"]}]}"
     response = urllib.request.urlopen(request, data=body.encode("utf-8"))
     rescode = response.getcode()
     if rescode == 200:
         response_body = response.read()
         res_json = json.loads(response_body.decode('utf-8'))
-
+        print(item)
         temp = []
         for data in res_json['results'][0]['data']:
             if flag:
                 date.append(data['period'])
             temp.append(data['ratio'])
         flag = False
+        print(temp[-1])
         data_li.append(temp)
     else:
         print("Error Code:" + rescode)
