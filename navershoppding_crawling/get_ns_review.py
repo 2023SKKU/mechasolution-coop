@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as bs
 from time import sleep
 import csv
 
-urls = pd.read_csv('ns_닭가슴살_url.csv')
+urls = pd.read_csv('ns_요가삭스_url.csv')
 url_li = []
 
 
@@ -14,6 +14,8 @@ def get_url_li(x):
     url = x['url']
     chnlseq = x['chnlseq']
     if url[8:14] == 'search' or url[8:10] == 'cr':
+        return
+    if not url[8:13] == 'smart':
         return
     url_li.append([url, int(chnlseq)])
 
@@ -95,11 +97,10 @@ json_data = {
     'sortType': 'REVIEW_RANKING',
 }
 
-f = open('ns_닭가슴살_review_txt.csv', 'w', encoding='utf-8', newline='')
+f = open('ns_요가삭스_review_txt.csv', 'w', encoding='utf-8', newline='')
 wr = csv.writer(f)
 wr.writerow(['content', 'star_rating', 'review_ranking_score'])
 
-print(url_li[0])
 for urls in url_li:
     url = urls[0]
     mall_no = urls[1]
